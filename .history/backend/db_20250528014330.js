@@ -1,9 +1,9 @@
 const oracledb = require('oracledb');
 
 const dbConfig = {
-  user: 'system',
-  password: 'pollo',
-  connectString: 'localhost:1521/XEPDB1', // e.g., 'localhost/ORCL'
+  user: 'your_user',
+  password: 'your_password',
+  connectString: 'your_connect_string', // e.g., 'localhost/ORCL'
 };
 
 async function initialize() {
