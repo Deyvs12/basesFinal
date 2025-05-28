@@ -14,7 +14,7 @@ exports.register = async (req, res) => {
     try {
       connection = await db.getConnection();
       const result = await connection.execute(
-        `INSERT INTO users (username, password) VALUES (:username, :password)`,
+        `INSERT INTO users (username, USER_PASSWORD) VALUES (:username, :password)`,
         { username: username, password: hashedPassword },
         { autoCommit: true }
       );
@@ -46,7 +46,7 @@ exports.login = async (req, res) => {
     try {
       connection = await db.getConnection();
       const result = await connection.execute(
-        `SELECT id, username, password FROM users WHERE username = :username`,
+        `SELECT USER_ID, username, USER_PASSWORD FROM users WHERE username = :username`,
         { username: username }
       );
 
