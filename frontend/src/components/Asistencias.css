@@ -3,14 +3,15 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #e0e0e0;
-  border-radius: 10px;
+  background-color: #ffebee; /* Light red background */
+  border-radius: 5px;
+  border: 1px solid #ef9a9a; /* Add a subtle red border */
 }
 
 .asistencias-title {
   font-size: 24px;
   margin-bottom: 20px;
-  color: black;
+  color: #d32f2f; /* Dark red title color */
 }
 
 .asistencias-table {
@@ -21,19 +22,27 @@
 
 .asistencias-table th,
 .asistencias-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ffcdd2; /* Lighter red border for table rows */
+}
+
+.asistencias-table th,
+.asistencias-table td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid black;
 }
 
 .asistencias-table th {
-  background-color: black;
+  background-color: #d32f2f; /* Dark red header background */
+  color: #fff; /* White header text color */
   font-weight: bold;
+  padding: 10px 12px;
 }
 
 .asistencias-table tr:nth-child(even) {
-  background-color: black;
-  color:white;
+  background-color: #ffcdd2; /* Even row background color */
 }
 
 .asistencias-table td:last-child {
@@ -43,12 +52,13 @@
 .asistencias-button {
   padding: 5px 10px;
   border: none;
-  border-radius: 5px;
-  background-color: #28a745;
+  border-radius: 3px;
+  background-color: #f44336; /* Red button background */
   color: white;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .asistencias-button:hover {
-  background-color: #218838;
+  background-color: #d32f2f; /* Darker red on hover */
 }
