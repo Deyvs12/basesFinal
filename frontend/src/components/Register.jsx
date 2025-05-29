@@ -5,14 +5,14 @@ import { register } from '../api/auth';
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
+  username: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
 });
 
 const Register = () => {
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     try {
-      const data = await register(values.name, values.email, values.password);
+      const data = await register(values.name, values.username, values.password);
       // Store the token in local storage or a cookie
       localStorage.setItem('token', data.token);
       // Redirect to the home page or a protected route
@@ -28,7 +28,7 @@ const Register = () => {
     <div>
       <h1>Register</h1>
       <Formik
-        initialValues={{ name: '', email: '', password: '' }}
+        initialValues={{ name: '', username: '', password: '' }}
         validationSchema={RegisterSchema}
         onSubmit={handleSubmit}
       >
@@ -40,9 +40,9 @@ const Register = () => {
               <ErrorMessage name="name" component="div" />
             </div>
             <div>
-              <label htmlFor="email">Email</label>
-              <Field type="email" name="email" />
-              <ErrorMessage name="email" component="div" />
+              <label htmlFor="username">Username</label>
+              <Field type="text" name="username" />
+              <ErrorMessage name="username" component="div" />
             </div>
             <div>
               <label htmlFor="password">Password</label>
