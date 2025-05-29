@@ -28,7 +28,7 @@ exports.createAsistencia = async (req, res) => {
     const asistencia = {
       estudiante_id: req.body.estudiante_id,
       fecha: req.body.fecha,
-      estado: req.body.estado
+      estado: req.body.presente
     };
     const newAsistencia = await Asistencia.create(asistencia);
     res.status(201).json(newAsistencia);
