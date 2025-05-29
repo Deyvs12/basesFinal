@@ -4,7 +4,12 @@ const baseURL = 'http://localhost:3000'; // Replace with your backend URL
 
 export const getAllEstudiantes = async () => {
   try {
-    const response = await axios.get(`${baseURL}/estudiantes`);
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${baseURL}/estudiantes`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -13,7 +18,12 @@ export const getAllEstudiantes = async () => {
 
 export const getEstudianteById = async (id) => {
   try {
-    const response = await axios.get(`${baseURL}/estudiantes/${id}`);
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${baseURL}/estudiantes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -22,7 +32,12 @@ export const getEstudianteById = async (id) => {
 
 export const createEstudiante = async (estudiante) => {
   try {
-    const response = await axios.post(`${baseURL}/estudiantes`, estudiante);
+    const token = localStorage.getItem('token');
+    const response = await axios.post(`${baseURL}/estudiantes`, estudiante, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -31,7 +46,12 @@ export const createEstudiante = async (estudiante) => {
 
 export const updateEstudiante = async (id, estudiante) => {
   try {
-    const response = await axios.put(`${baseURL}/estudiantes/${id}`, estudiante);
+    const token = localStorage.getItem('token');
+    const response = await axios.put(`${baseURL}/estudiantes/${id}`, estudiante, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -40,7 +60,12 @@ export const updateEstudiante = async (id, estudiante) => {
 
 export const deleteEstudiante = async (id) => {
   try {
-    const response = await axios.delete(`${baseURL}/estudiantes/${id}`);
+    const token = localStorage.getItem('token');
+    const response = await axios.delete(`${baseURL}/estudiantes/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error.response.data;

@@ -4,7 +4,12 @@ const baseURL = 'http://localhost:3000'; // Replace with your backend URL
 
 export const getAllAsistencias = async () => {
   try {
-    const response = await axios.get(`${baseURL}/asistencias`);
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${baseURL}/asistencias`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -13,7 +18,12 @@ export const getAllAsistencias = async () => {
 
 export const getAsistenciaById = async (id) => {
   try {
-    const response = await axios.get(`${baseURL}/asistencias/${id}`);
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${baseURL}/asistencias/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -22,7 +32,12 @@ export const getAsistenciaById = async (id) => {
 
 export const createAsistencia = async (asistencia) => {
   try {
-    const response = await axios.post(`${baseURL}/asistencias`, asistencia);
+    const token = localStorage.getItem('token');
+    const response = await axios.post(`${baseURL}/asistencias`, asistencia, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -31,7 +46,12 @@ export const createAsistencia = async (asistencia) => {
 
 export const updateAsistencia = async (id, asistencia) => {
   try {
-    const response = await axios.put(`${baseURL}/asistencias/${id}`, asistencia);
+    const token = localStorage.getItem('token');
+    const response = await axios.put(`${baseURL}/asistencias/${id}`, asistencia, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error.response.data;
@@ -40,7 +60,12 @@ export const updateAsistencia = async (id, asistencia) => {
 
 export const deleteAsistencia = async (id) => {
   try {
-    const response = await axios.delete(`${baseURL}/asistencias/${id}`);
+    const token = localStorage.getItem('token');
+    const response = await axios.delete(`${baseURL}/asistencias/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     throw error.response.data;
