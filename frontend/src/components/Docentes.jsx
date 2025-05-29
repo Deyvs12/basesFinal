@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Docentes.css';
 import { getAllDocentes, createDocente, updateDocente, deleteDocente } from '../api/docentes';
 
 const Docentes = () => {
@@ -53,63 +54,71 @@ const Docentes = () => {
   };
 
   return (
-    <div>
-      <h1>Docentes</h1>
+    <div className="docentes-container">
+      <h1 className="docentes-title">Docentes</h1>
 
-      <h2>Create Docente</h2>
-      <form onSubmit={handleCreateDocente}>
+      <h2 className="docentes-title">Create Docente</h2>
+      <form className="docentes-form" onSubmit={handleCreateDocente}>
         <input
           type="text"
           placeholder="Nombre"
           value={newDocente.nombre}
           onChange={(e) => setNewDocente({ ...newDocente, nombre: e.target.value })}
+          className="docentes-input"
         />
         <input
           type="text"
           placeholder="Apellido"
           value={newDocente.apellido}
           onChange={(e) => setNewDocente({ ...newDocente, apellido: e.target.value })}
+          className="docentes-input"
         />
         <input
           type="text"
           placeholder="Especialidad"
           value={newDocente.especialidad}
           onChange={(e) => setNewDocente({ ...newDocente, especialidad: e.target.value })}
+          className="docentes-input"
         />
-        <button type="submit">Create</button>
+        <button type="submit" className="docentes-button">Create</button>
       </form>
 
-      <h2>Docentes List</h2>
-      <ul>
+      <h2 className="docentes-title">Docentes List</h2>
+      <ul className="docentes-list">
         {docentes.map((docente) => (
-          <li key={docente.id_docente}>
+          <li key={docente.id_docente} className="docentes-list-item">
             {editingDocenteId === docente.id_docente ? (
-              <form onSubmit={handleUpdateDocente}>
+              <form className="docentes-form" onSubmit={handleUpdateDocente}>
                 <input
                   type="text"
                   value={editingDocente.nombre}
                   onChange={(e) => setEditingDocente({ ...editingDocente, nombre: e.target.value })}
+                  className="docentes-input"
                 />
                 <input
                   type="text"
                   value={editingDocente.apellido}
                   onChange={(e) => setEditingDocente({ ...editingDocente, apellido: e.target.value })}
+                  className="docentes-input"
                 />
                 <input
                   type="text"
                   value={editingDocente.especialidad}
                   onChange={(e) => setEditingDocente({ ...editingDocente, especialidad: e.target.value })}
+                  className="docentes-input"
                 />
-                <button type="submit">Update</button>
+                <button type="submit" className="docentes-button">Update</button>
               </form>
             ) : (
               <>
-                {docente.nombre} - {docente.apellido} - {docente.especialidad}
-                <button onClick={() => {
-                  setEditingDocenteId(docente.id_docente);
-                  setEditingDocente({ nombre: docente.nombre, apellido: docente.apellido, especialidad: docente.especialidad });
-                }}>Edit</button>
-                <button onClick={() => handleDeleteDocente(docente.id_docente)}>Delete</button>
+                <span className="docentes-item-name">{docente.nombre} - {docente.apellido} - {docente.especialidad}</span>
+                <div className="docentes-item-actions">
+                  <button className="docentes-button" onClick={() => {
+                    setEditingDocenteId(docente.id_docente);
+                    setEditingDocente({ nombre: docente.nombre, apellido: docente.apellido, especialidad: docente.especialidad });
+                  }}>Edit</button>
+                  <button className="docentes-button" onClick={() => handleDeleteDocente(docente.id_docente)}>Delete</button>
+                </div>
               </>
             )}
           </li>

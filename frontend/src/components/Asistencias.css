@@ -1,0 +1,54 @@
+.asistencias-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+}
+
+.asistencias-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.asistencias-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.asistencias-table th,
+.asistencias-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid black;
+}
+
+.asistencias-table th {
+  background-color: black;
+  font-weight: bold;
+}
+
+.asistencias-table tr:nth-child(even) {
+  background-color: black;
+  color:white;
+}
+
+.asistencias-table td:last-child {
+  text-align: center;
+}
+
+.asistencias-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+.asistencias-button:hover {
+  background-color: #218838;
+}

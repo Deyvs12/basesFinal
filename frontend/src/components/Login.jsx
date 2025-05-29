@@ -1,4 +1,5 @@
 import React from 'react';
+import './Login.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { login } from '../api/auth';
@@ -24,29 +25,29 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="login-container">
+      <h1 className="login-title">Login</h1>
       <Formik
         initialValues={{ username: '', password: '' }}
         validationSchema={LoginSchema}
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form>
-            <div>
-              <label htmlFor="username">Username</label>
-              <Field type="text" name="username" />
-              <ErrorMessage name="username" component="div" />
+          <Form className="login-form">
+            <div className="login-form-group">
+              <label className="login-label" htmlFor="username">Username</label>
+              <Field className="login-input" type="text" name="username" />
+              <ErrorMessage className="login-error" name="username" component="div" />
             </div>
-            <div>
-              <label htmlFor="password">Password</label>
-              <Field type="password" name="password" />
-              <ErrorMessage name="password" component="div" />
+            <div className="login-form-group">
+              <label className="login-label" htmlFor="password">Password</label>
+              <Field className="login-input" type="password" name="password" />
+              <ErrorMessage className="login-error" name="password" component="div" />
             </div>
-            <button type="submit" disabled={isSubmitting}>
+            <button className="login-button" type="submit" disabled={isSubmitting}>
               {isSubmitting ? 'Logging in...' : 'Login'}
             </button>
-            <ErrorMessage name="general" component="div" />
+            <ErrorMessage className="login-error" name="general" component="div" />
           </Form>
         )}
       </Formik>

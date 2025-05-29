@@ -1,4 +1,5 @@
 import React from 'react';
+import './Register.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { register } from '../api/auth';
@@ -25,34 +26,34 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
+    <div className="register-container">
+      <h1 className="register-title">Register</h1>
       <Formik
         initialValues={{ name: '', username: '', password: '' }}
         validationSchema={RegisterSchema}
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className="register-form">
             <div>
-              <label htmlFor="name">Name</label>
-              <Field type="text" name="name" />
-              <ErrorMessage name="name" component="div" />
+              <label className="register-label" htmlFor="name">Name</label>
+              <Field className="register-input" type="text" name="name" />
+              <ErrorMessage className="register-error" name="name" component="div" />
             </div>
             <div>
-              <label htmlFor="username">Username</label>
-              <Field type="text" name="username" />
-              <ErrorMessage name="username" component="div" />
+              <label className="register-label" htmlFor="username">Username</label>
+              <Field className="register-input" type="text" name="username" />
+              <ErrorMessage className="register-error" name="username" component="div" />
             </div>
             <div>
-              <label htmlFor="password">Password</label>
-              <Field type="password" name="password" />
-              <ErrorMessage name="password" component="div" />
+              <label className="register-label" htmlFor="password">Password</label>
+              <Field className="register-input" type="password" name="password" />
+              <ErrorMessage className="register-error" name="password" component="div" />
             </div>
-            <button type="submit" disabled={isSubmitting}>
+            <button className="register-button" type="submit" disabled={isSubmitting}>
               {isSubmitting ? 'Registering...' : 'Register'}
             </button>
-            <ErrorMessage name="general" component="div" />
+            <ErrorMessage className="register-error" name="general" component="div" />
           </Form>
         )}
       </Formik>

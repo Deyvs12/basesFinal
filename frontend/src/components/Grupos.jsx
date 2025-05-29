@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Grupos.css';
 import { getAllGrupos, createGrupo, updateGrupo, deleteGrupo } from '../api/grupos';
 
 const Grupos = () => {
@@ -53,63 +54,71 @@ const Grupos = () => {
   };
 
   return (
-    <div>
-      <h1>Grupos</h1>
+    <div className="grupos-container">
+      <h1 className="grupos-title">Grupos</h1>
 
-      <h2>Create Grupo</h2>
-      <form onSubmit={handleCreateGrupo}>
+      <h2 className="grupos-title">Create Grupo</h2>
+      <form className="grupos-form" onSubmit={handleCreateGrupo}>
         <input
           type="text"
           placeholder="Nombre Grupo"
           value={newGrupo.nombre_grupo}
           onChange={(e) => setNewGrupo({ ...newGrupo, nombre_grupo: e.target.value })}
+          className="grupos-input"
         />
         <input
           type="text"
           placeholder="Grado"
           value={newGrupo.grado}
           onChange={(e) => setNewGrupo({ ...newGrupo, grado: e.target.value })}
+          className="grupos-input"
         />
         <input
           type="text"
           placeholder="Ciclo Escolar"
           value={newGrupo.ciclo_escolar}
           onChange={(e) => setNewGrupo({ ...newGrupo, ciclo_escolar: e.target.value })}
+          className="grupos-input"
         />
-        <button type="submit">Create</button>
+        <button type="submit" className="grupos-button">Create</button>
       </form>
 
-      <h2>Grupos List</h2>
-      <ul>
+      <h2 className="grupos-title">Grupos List</h2>
+      <ul className="grupos-list">
         {grupos.map((grupo) => (
-          <li key={grupo.id_grupo}>
+          <li key={grupo.id_grupo} className="grupos-list-item">
             {editingGrupoId === grupo.id_grupo ? (
-              <form onSubmit={handleUpdateGrupo}>
+              <form className="grupos-form" onSubmit={handleUpdateGrupo}>
                 <input
                   type="text"
                   value={editingGrupo.nombre_grupo}
                   onChange={(e) => setEditingGrupo({ ...editingGrupo, nombre_grupo: e.target.value })}
+                  className="grupos-input"
                 />
                 <input
                   type="text"
                   value={editingGrupo.grado}
                   onChange={(e) => setEditingGrupo({ ...editingGrupo, grado: e.target.value })}
+                  className="grupos-input"
                 />
                 <input
                   type="text"
                   value={editingGrupo.ciclo_escolar}
                   onChange={(e) => setEditingGrupo({ ...editingGrupo, ciclo_escolar: e.target.value })}
+                  className="grupos-input"
                 />
-                <button type="submit">Update</button>
+                <button type="submit" className="grupos-button">Update</button>
               </form>
             ) : (
               <>
-                {grupo.nombre_grupo} - {grupo.grado} - {grupo.ciclo_escolar}
-                <button onClick={() => {
-                  setEditingGrupoId(grupo.id_grupo);
-                  setEditingGrupo({ nombre_grupo: grupo.nombre_grupo, grado: grupo.grado, ciclo_escolar: grupo.ciclo_escolar });
-                }}>Edit</button>
-                <button onClick={() => handleDeleteGrupo(grupo.id_grupo)}>Delete</button>
+                <span className="grupos-item-name">{grupo.nombre_grupo} - {grupo.grado} - {grupo.ciclo_escolar}</span>
+                <div className="grupos-item-actions">
+                  <button className="grupos-button" onClick={() => {
+                    setEditingGrupoId(grupo.id_grupo);
+                    setEditingGrupo({ nombre_grupo: grupo.nombre_grupo, grado: grupo.grado, ciclo_escolar: grupo.ciclo_escolar });
+                  }}>Edit</button>
+                  <button className="grupos-button" onClick={() => handleDeleteGrupo(grupo.id_grupo)}>Delete</button>
+                </div>
               </>
             )}
           </li>

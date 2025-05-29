@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Asistencias.css';
 import { getAllAsistencias, createAsistencia, updateAsistencia, deleteAsistencia } from '../api/asistencias';
 
 const Asistencias = () => {
@@ -53,68 +54,88 @@ const Asistencias = () => {
   };
 
   return (
-    <div>
-      <h1>Asistencias</h1>
+    <div className="asistencias-container">
+      <h1 className="asistencias-title">Asistencias</h1>
 
-      <h2>Create Asistencia</h2>
-      <form onSubmit={handleCreateAsistencia}>
+      <h2 className="asistencias-title">Create Asistencia</h2>
+      <form className="asistencias-form" onSubmit={handleCreateAsistencia}>
         <input
           type="text"
           placeholder="Estudiante ID"
           value={newAsistencia.estudiante_id}
           onChange={(e) => setNewAsistencia({ ...newAsistencia, estudiante_id: e.target.value })}
+          className="asistencias-input"
         />
         <input
           type="text"
           placeholder="Fecha"
           value={newAsistencia.fecha}
           onChange={(e) => setNewAsistencia({ ...newAsistencia, fecha: e.target.value })}
+          className="asistencias-input"
         />
         <input
           type="text"
           placeholder="Estado"
           value={newAsistencia.estado}
           onChange={(e) => setNewAsistencia({ ...newAsistencia, estado: e.target.value })}
+          className="asistencias-input"
         />
-        <button type="submit">Create</button>
+        <button type="submit" className="asistencias-button">Create</button>
       </form>
 
-      <h2>Asistencias List</h2>
-      <ul>
-        {asistencias.map((asistencia) => (
-          <li key={asistencia.id_asistencia}>
-            {editingAsistenciaId === asistencia.id_asistencia ? (
-              <form onSubmit={handleUpdateAsistencia}>
-                <input
-                  type="text"
-                  value={editingAsistencia.estudiante_id}
-                  onChange={(e) => setEditingAsistencia({ ...editingAsistencia, estudiante_id: e.target.value })}
-                />
-                <input
-                  type="text"
-                  value={editingAsistencia.fecha}
-                  onChange={(e) => setEditingAsistencia({ ...editingAsistencia, fecha: e.target.value })}
-                />
-                <input
-                  type="text"
-                  value={editingAsistencia.estado}
-                  onChange={(e) => setEditingAsistencia({ ...editingAsistencia, estado: e.target.value })}
-                />
-                <button type="submit">Update</button>
-              </form>
-            ) : (
-              <>
-                {asistencia.estudiante_id} - {asistencia.fecha} - {asistencia.estado}
-                <button onClick={() => {
-                  setEditingAsistenciaId(asistencia.id_asistencia);
-                  setEditingAsistencia({ estudiante_id: asistencia.estudiante_id, fecha: asistencia.fecha, estado: asistencia.estado });
-                }}>Edit</button>
-                <button onClick={() => handleDeleteAsistencia(asistencia.id_asistencia)}>Delete</button>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
+      <h2 className="asistencias-title">Asistencias List</h2>
+      <table className="asistencias-table">
+        <thead>
+          <tr>
+            <th>Estudiante ID</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {asistencias.map((asistencia) => (
+            <tr key={asistencia.id_asistencia}>
+              <td>{asistencia.estudiante_id}</td>
+              <td>{asistencia.fecha}</td>
+              <td>{asistencia.estado}</td>
+              <td>
+                {editingAsistenciaId === asistencia.id_asistencia ? (
+                  <form className="asistencias-form" onSubmit={handleUpdateAsistencia}>
+                    <input
+                      type="text"
+                      value={editingAsistencia.estudiante_id}
+                      onChange={(e) => setEditingAsistencia({ ...editingAsistencia, estudiante_id: e.target.value })}
+                      className="asistencias-input"
+                    />
+                    <input
+                      type="text"
+                      value={editingAsistencia.fecha}
+                      onChange={(e) => setEditingAsistencia({ ...editingAsistencia, fecha: e.target.value })}
+                      className="asistencias-input"
+                    />
+                    <input
+                      type="text"
+                      value={editingAsistencia.estado}
+                      onChange={(e) => setEditingAsistencia({ ...editingAsistencia, estado: e.target.value })}
+                      className="asistencias-input"
+                    />
+                    <button type="submit" className="asistencias-button">Update</button>
+                  </form>
+                ) : (
+                  <>
+                    <button className="asistencias-button" onClick={() => {
+                      setEditingAsistenciaId(asistencia.id_asistencia);
+                      setEditingAsistencia({ estudiante_id: asistencia.estudiante_id, fecha: asistencia.fecha, estado: asistencia.estado });
+                    }}>Edit</button>
+                    <button className="asistencias-button" onClick={() => handleDeleteAsistencia(asistencia.id_asistencia)}>Delete</button>
+                  </>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
