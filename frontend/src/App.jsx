@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/Register';
+import Asignaturas from './components/Asignaturas';
+import Asistencias from './components/Asistencias';
+import Docentes from './components/Docentes';
+import Estudiantes from './components/Estudiantes';
+import Evaluaciones from './components/Evaluaciones';
+import Grupos from './components/Grupos';
+
+const Home = () => {
+  return (
+    <div>
+      <h1>Home</h1>
+      <Link to="/login">Login</Link> | <Link to="/register">Register</Link>
+    </div>
+  );
+};
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
+    <Router>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/asignaturas">Asignaturas</Link>
+            </li>
+            <li>
+              <Link to="/asistencias">Asistencias</Link>
+            </li>
+            <li>
+              <Link to="/docentes">Docentes</Link>
+            </li>
+            <li>
+              <Link to="/estudiantes">Estudiantes</Link>
+            </li>
+            <li>
+              <Link to="/evaluaciones">Evaluaciones</Link>
+            </li>
+            <li>
+              <Link to="/grupos">Grupos</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/asignaturas" element={<Asignaturas />} />
+          <Route path="/asistencias" element={<Asistencias />} />
+          <Route path="/docentes" element={<Docentes />} />
+          <Route path="/estudiantes" element={<Estudiantes />} />
+          <Route path="/evaluaciones" element={<Evaluaciones />} />
+          <Route path="/grupos" element={<Grupos />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;

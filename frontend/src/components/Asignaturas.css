@@ -1,0 +1,55 @@
+.asignaturas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.asignaturas-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.asignaturas-list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.asignaturas-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.asignaturas-list-item:last-child {
+  border-bottom: none;
+}
+
+.asignaturas-item-name {
+  font-size: 16px;
+  color: #555;
+}
+
+.asignaturas-item-actions {
+  display: flex;
+}
+
+.asignaturas-button {
+  padding: 5px 10px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.asignaturas-button:hover {
+  background-color: #0056b3;
+}
